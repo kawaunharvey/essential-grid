@@ -1,48 +1,41 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
-export type GridContainerProps = {
-  align?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  spacing?: number;
+export type GridProps = GridContainerProps &
+    GridItemProps & {
+        children?: ReactNode
+        className?: string,
+        container?: boolean
+        item?: boolean
+    }
+
+export type GridContainerProps = FlexGrid & {
+    hide?: boolean
 }
 
-export type GridItemProps = {
-  flex?: number;
-}
-
-export type GridProps = GridContainerProps & GridItemProps & {
-  children?: ReactNode;
-  container?: boolean;
-  item?: boolean;
+export type GridItemProps = FlexGridItem & {
+    hide?: boolean
 }
 
 export interface FlexGrid {
-    justifyContent?:
-      | "flex-start"
-      | "flex-end"
-      | "center"
-      | "space-between"
-      | "space-around"
-      | "space-evenly";
-    alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
-    flex?: string;
-    expand?: boolean;
-    shrink?: boolean;
-    gutter?: number;
-    hide?: boolean;
-    column?: "row-reverse" | "column" | "column-reverse" | "row";
-    order?: number;
-  };
-  
-//   export type ViewportGrid = {
-//     [key in keyof Breakpoints]?: FlexGridProps;
-//   };
-  
-// export type GridProps = {
-//     container?: boolean;
-//     item?: boolean;
-//     className?: string;
-//     children?: React.ReactNode;
-// } & FlexGrid;
+    justify?:
+        | 'flex-start'
+        | 'flex-end'
+        | 'center'
+        | 'space-between'
+        | 'space-around'
+        | 'space-evenly'
+    wrap?: boolean;
+    reverse?: boolean;
+    direction?: 'horizontal' | 'vertical'
+    align?: 'top' | 'bottom' | 'middle' | 'baseline' | 'stretch'
+    gap?: string;
+}
+
+export interface FlexGridItem {
+    flex?: string
+    order?: number,
+    grow?: number,
+    shrink?: number,
+    basis?: 0 | 'auto'
+    align?: 'auto' | 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline',
+}

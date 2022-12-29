@@ -1,68 +1,83 @@
 import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Grid } from './module';
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { Grid } from './module'
 import styled from 'styled-components'
+import type { GridProps } from './types'
 
-type GridProps = Omit<ComponentMeta<typeof Grid>, 'ref' | 'theme' | 'as' | 'forwardedAs'>
+// type GridProps = Omit<
+//     ComponentMeta<typeof Grid>,
+//     'ref' | 'theme' | 'as' | 'forwardedAs'
+// >
 
-
-const Box = styled.div`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eee;
+const StoryGrid = styled(Grid)`
+  max-width: 960px;
+  max-height: 80vh;
 `;
 
-export default {
-  title: 'Essential/Grid',
-  component: Grid,
-  // parameters: {
-  //   // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-  //   layout: 'fullscreen',
-  // },
-} as GridProps;
+const Container = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
-const Template:ComponentStory<typeof Grid> = (args) => (
-  <Grid {...args} container>
-    { Array(6).fill(null).map((b,i) => <Grid key={i}><Box>{i+1}</Box></Grid>) }
-  </Grid>
+const Box = styled.div`
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 275px;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    font-size: 2rem;
+`
+
+export default {
+    title: 'Essential/Grid',
+    component: Grid,
+    parameters: {
+      // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+      layout: 'fullscreen',
+    },
+} as ComponentMeta<typeof Story>
+
+type StoryProps = {
+    count?: number,
+    grid: GridProps,
+}
+
+const Story = ({count, grid}:StoryProps) => (
+  <Container>
+      <StoryGrid {...grid} container>
+          {Array(count)
+              .fill(null)
+              .map((b, i) => (
+                  <Grid key={i}>
+                      <Box>{i + 1}</Box>
+                  </Grid>
+              ))}
+      </StoryGrid>
+  </Container>
 )
 
-export const HorizontalGrid = Template.bind({});
+const Template: ComponentStory<typeof Story> = (args) => <Story {...args} />
+
+export const HorizontalGrid = Template.bind({})
 HorizontalGrid.args = {
-  justify: 'space-between',
+    count: 8,
+    grid: {
+      gap: '2rem',
+      wrap: true,
+    }
+    
 }
 
-export const VerticalGrid = Template.bind({});
+export const VerticalGrid = Template.bind({})
 VerticalGrid.args = {
-  direction: 'column',
+  count: 12,
+  grid: {
+    direction: 'vertical',
+    gap: '2rem',
+  }
 }
-
-
-// import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-// import { Grid } from './module';
-
-// export default {
-//   title: 'Essential/Grid',
-//   component: Grid,
-//   parameters: {
-//     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-//     layout: 'fullscreen',
-//   },
-// } as ComponentMeta<typeof Grid>;
-
-// const Template: ComponentStory<typeof Grid> = (args) => <Grid {...args} />;
-
-// export const LoggedIn = Template.bind({});
-// LoggedIn.args = {
-//   user: {
-//     name: 'Jane Doe',
-//   },
-// };
-
-// export const LoggedOut = Template.bind({});
-// LoggedOut.args = {};

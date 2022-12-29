@@ -10,13 +10,16 @@
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-interactions": "^6.5.15",
     "@storybook/addon-links": "^6.5.15",
+    "@storybook/addons": "^6.5.15",
     "@storybook/builder-webpack4": "^6.5.15",
     "@storybook/manager-webpack4": "^6.5.15",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
+    "@storybook/theming": "^6.5.15",
     "@types/node": "^18.11.10",
     "@types/qrcode": "^1.5.0",
     "babel-loader": "^8.3.0",
+    "husky": "^8.0.2",
     "nodemon": "^2.0.20",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
@@ -32,6 +35,22 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install",
+    "lint": "eslint src --fix"
+
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts?(x)": [
+      "prettier --write",
+      "yarn lint",
+      "tsc -p tsconfig.json --noEmit",
+      "git add"
+    ]
   }
 }

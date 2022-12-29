@@ -23,6 +23,7 @@
         "babel-loader": "^8.3.0",
         "eslint": "^8.30.0",
         "husky": "^8.0.2",
+        "lint-staged": "^13.1.0",
         "nodemon": "^2.0.20",
         "rimraf": "^3.0.2",
         "ts-node": "^10.9.1",

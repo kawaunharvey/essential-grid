@@ -1,7 +1,0 @@
-{
-    "**/*.ts?(x)": [
-        "yarn lint",
-        "yarn prettier",
-        "git add"
-    ]
-}

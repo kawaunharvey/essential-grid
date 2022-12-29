@@ -10,9 +10,9 @@ import type { GridProps } from './types'
 // >
 
 const StoryGrid = styled(Grid)`
-  max-width: 960px;
-  max-height: 80vh;
-`;
+    max-width: 960px;
+    max-height: 80vh;
+`
 
 const Container = styled.div`
     width: 100%;
@@ -20,10 +20,11 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`;
+`
 
 const Box = styled.div`
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     width: 275px;
     height: 135px;
     display: flex;
@@ -37,47 +38,46 @@ export default {
     title: 'Essential/Grid',
     component: Grid,
     parameters: {
-      // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-      layout: 'fullscreen',
+        // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+        layout: 'fullscreen',
     },
 } as ComponentMeta<typeof Story>
 
 type StoryProps = {
-    count?: number,
-    grid: GridProps,
+    count?: number
+    grid: GridProps
 }
 
-const Story = ({count, grid}:StoryProps) => (
-  <Container>
-      <StoryGrid {...grid} container>
-          {Array(count)
-              .fill(null)
-              .map((b, i) => (
-                  <Grid key={i}>
-                      <Box>{i + 1}</Box>
-                  </Grid>
-              ))}
-      </StoryGrid>
-  </Container>
+const Story = ({ count, grid }: StoryProps) => (
+    <Container>
+        <StoryGrid {...grid} container>
+            {Array(count)
+                .fill(null)
+                .map((b, i) => (
+                    <Grid key={i}>
+                        <Box>{i + 1}</Box>
+                    </Grid>
+                ))}
+        </StoryGrid>
+    </Container>
 )
 
-const Template: ComponentStory<typeof Story> = (args) => <Story {...args} />
+const Template:ComponentStory<typeof Story> = (args) => <Story {...args} />
 
 export const HorizontalGrid = Template.bind({})
 HorizontalGrid.args = {
     count: 8,
     grid: {
-      gap: '2rem',
-      wrap: true,
-    }
-    
+        gap: '2rem',
+        wrap: true,
+    },
 }
 
 export const VerticalGrid = Template.bind({})
 VerticalGrid.args = {
-  count: 12,
-  grid: {
-    direction: 'vertical',
-    gap: '2rem',
-  }
+    count: 12,
+    grid: {
+        direction: 'vertical',
+        gap: '2rem',
+    },
 }

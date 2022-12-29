@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 export type GridProps = GridContainerProps &
     GridItemProps & {
         children?: ReactNode
-        className?: string,
+        className?: string
         container?: boolean
         item?: boolean
     }
@@ -24,18 +24,18 @@ export interface FlexGrid {
         | 'space-between'
         | 'space-around'
         | 'space-evenly'
-    wrap?: boolean;
-    reverse?: boolean;
+    wrap?: boolean
+    reverse?: boolean
     direction?: 'horizontal' | 'vertical'
     align?: 'top' | 'bottom' | 'middle' | 'baseline' | 'stretch'
-    gap?: string;
+    gap?: string
 }
 
 export interface FlexGridItem {
     flex?: string
-    order?: number,
-    grow?: number,
-    shrink?: number,
+    order?: number
+    grow?: number
+    shrink?: number
     basis?: 0 | 'auto'
-    align?: 'auto' | 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline',
+    align?: 'auto' | 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline'
 }

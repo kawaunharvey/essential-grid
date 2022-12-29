@@ -45,7 +45,7 @@ export const GridContainer = styled.div<GridContainerProps>`
         css`
             row-gap: ${gap};
             column-gap: ${gap};
-        `}  
+        `}
 `
 
 export const GridItem = styled.div<GridItemProps>`

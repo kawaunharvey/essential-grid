@@ -1,41 +1,42 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
-export type GridProps = GridContainerProps &
+export type GridProps = PropsWithChildren<
+  GridContainerProps &
     GridItemProps & {
-        children?: ReactNode
-        className?: string
-        container?: boolean
-        item?: boolean
+      className?: string
+      container?: boolean
+      item?: boolean
     }
+>
 
 export type GridContainerProps = FlexGrid & {
-    hide?: boolean
+  hide?: boolean
 }
 
 export type GridItemProps = FlexGridItem & {
-    hide?: boolean
+  hide?: boolean
 }
 
 export interface FlexGrid {
-    justify?:
-        | 'flex-start'
-        | 'flex-end'
-        | 'center'
-        | 'space-between'
-        | 'space-around'
-        | 'space-evenly'
-    wrap?: boolean
-    reverse?: boolean
-    direction?: 'horizontal' | 'vertical'
-    align?: 'top' | 'bottom' | 'middle' | 'baseline' | 'stretch'
-    gap?: string
+  justify?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+  wrap?: boolean
+  reverse?: boolean
+  direction?: 'horizontal' | 'vertical'
+  align?: 'top' | 'bottom' | 'middle' | 'baseline' | 'stretch'
+  gap?: string
 }
 
 export interface FlexGridItem {
-    flex?: string
-    order?: number
-    grow?: number
-    shrink?: number
-    basis?: 0 | 'auto'
-    align?: 'auto' | 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline'
+  flex?: string
+  order?: number
+  grow?: number
+  shrink?: number
+  basis?: 0 | 'auto'
+  align?: 'auto' | 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline'
 }

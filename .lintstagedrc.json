@@ -1,6 +1,8 @@
 {
-    "*.ts?(x)": [
-      "prettier --write",
-      "eslint"
-    ]
-  }
+  "./src/*.{js,jsx,css,scss,md,json}": ["prettier --write"],
+  "./src/*.{ts,tsx}": [
+    "prettier --parser typescript --write --no-semi",
+    "eslint --cache --fix",
+    "bash -c tsc -p tsconfig.json --noEmit"
+  ]
+}
